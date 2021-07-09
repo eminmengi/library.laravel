@@ -16,22 +16,22 @@ class LibraryController extends Controller
         return view('index')->with(['books' => $book]);
    }
 
-    public function create(BookRequest $book)
+    public function create(BookRequest $request)
     {
 
 
-        $fileModel = new Book;
-        if($book->file()) {
-            $fileName = time() . '.' . $book->file->extension();
-            $book->file->move(public_path('uploads'), $fileName);
-            $fileModel->cover = $fileName;
+        $book = new Book;
+        if($request->file()) {
+            $fileName = time() . '.' . $request->file->extension();
+            $request->file->move(public_path('uploads'), $fileName);
+            $book->cover = $fileName;
         }
 
 
-        $fileModel->isbn = $book->isbn;
-        $fileModel->name = $book->name;
-        $fileModel->author = $book->author;
-        $fileModel->save();
+        $book->isbn = $request->isbn;
+        $book->name = $request->name;
+        $book->author = $request->author;
+        $book->save();
         return back()
             ->with('message','Kitap eklendi.');
 
