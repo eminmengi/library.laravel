@@ -1,12 +1,17 @@
 @include('inc.header')
 
 
-        <div class="container">
+        <div  class="container mt-20">
             <div class="row">
-                <div class="col"> <h2>Kitaplar</h2></div>
+                <div class="col col-form-label-lg"> <h2>Kitaplar</h2></div>
                 <div class="col">@auth<a href="{{route('add_book')}}" class="btn btn-success" style="float: right">Kitap Ekle</a>@endauth</div>
             </div>
 
+            @if ($message = Session::get('message'))
+                <div class="alert alert-success alert-block">
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
 
             <table class="table table-hover">
                 <thead>
@@ -17,6 +22,7 @@
                     <th>Kapak Kapağı</th>
                     <th>İsbn</th>
                     <th>Eylem</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -25,10 +31,12 @@
                     <td>{{$book->id}}</td>
                     <td>{{$book->name}}</td>
                     <td>{{$book->author}}</td>
-                    <td><img width="90" src="{{asset('uploads/'.$book->cover)}}" alt=""></td>
+                    <td><img width="120" src="{{asset('uploads/'.$book->cover)}}" alt=""></td>
                     <td>{{$book->isbn}}</td>
-                    <td>@auth<a href="">Düzenle </a><a href=""> Sil</a>@endauth</td>
-
+                    <td>@auth
+                            <a class="alert alert-success sm:block small " href="{{route('edit_book',['id'=>$book->id])}}" >Düzenle</a>
+                        <a class="alert alert-danger sm:block small" href="{{route('delete_book',['id'=>$book->id])}}">Sil</a>@endauth
+                        <a class="alert alert-secondary sm:block small" href="{{route('detail_book',['id'=>$book->id])}}" >Detay</a></td>
                 </tr>
                 @endforeach
                 </tbody>

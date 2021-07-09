@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset('bootstrap-5.0.2/css/bootstrap.min.css')}}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>İndex</title>
 
     <!-- Fonts -->
@@ -24,29 +25,31 @@
 <body class="antialiased">
 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 sm:items-center py-4 sm:pt-0">
     @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            @auth
-                <div class=" sm:flex sm:items-center sm:ml-6">
-                    <div>{{ Auth::user()->name }}</div>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
+           <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+               @auth
+                   <div class=" sm:flex sm:items-center sm:ml-6">
+                       <div>{{ Auth::user()->name }}</div>
+                       <form method="POST" action="{{ route('logout') }}">
+                           @csrf
 
-                        <x-dropdown-link :href="route('logout')"
-                                         onclick="event.preventDefault();
+                           <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                            {{ __('Çıkış Yap') }}
-                        </x-dropdown-link>
-                    </form>
+                               {{ __('Çıkış Yap') }}
+                           </x-dropdown-link>
+                       </form>
 
-                </div>
-            @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Giriş Yap</a>
+                   </div>
+               @else
+                   <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Giriş Yap</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Kayıt Ol</a>
-                @endif
-            @endauth
-        </div>
+                   @if (Route::has('register'))
+                       <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Kayıt Ol</a>
+                   @endif
+               @endauth
+
+
+       </div>
 
     @endif
 
