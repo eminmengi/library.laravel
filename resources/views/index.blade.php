@@ -35,7 +35,12 @@
                     <td>{{$book->isbn}}</td>
                     <td>@auth
                             <a class="alert alert-success sm:block small " href="{{route('edit_book',['id'=>$book->id])}}" >Düzenle</a>
-                        <a class="alert alert-danger sm:block small" href="{{route('delete_book',['id'=>$book->id])}}">Sil</a>@endauth
+                            <form action="{{route('delete_book',['id'=>$book->id])}}" method="post">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <button style="text-align: left;width: 100%;" class="alert alert-danger sm:block small" type="submit" >Sil</button>
+                            </form>
+                        @endauth
                         <a class="alert alert-secondary sm:block small" href="{{route('detail_book',['id'=>$book->id])}}" >Detay</a></td>
                 </tr>
                 @endforeach

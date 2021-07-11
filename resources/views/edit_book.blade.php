@@ -17,6 +17,7 @@
         @endif
 
     <form method="post" action="{{route('update_book',['id'=>$book->id])}}"  enctype="multipart/form-data" >
+        @method('PUT')
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Kitap Adı</label>

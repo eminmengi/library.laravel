@@ -29,12 +29,11 @@ Route::get('/add_book',function (){
 
 Route::post('/add_book',[LibraryController::class,'create'])->middleware(['auth'])->name('add_book');
 
-Route::get('/delete_book/{id}',[LibraryController::class,'destroy'])->middleware(['auth'])->name('delete_book');
+Route::delete('/delete_book/{id}',[LibraryController::class,'destroy'])->middleware(['auth'])->name('delete_book');
 
 Route::get('/edit_book/{id}',[LibraryController::class,'edit'])->middleware(['auth'])->name('edit_book');
 
-
-Route::post('/update_book/{id}',[LibraryController::class,'update'])->middleware(['auth'])->name('update_book');
+Route::put('/update_book/{id}',[LibraryController::class,'update'])->middleware(['auth'])->name('update_book');
 
 Route::get('/detail_book/{id}',[LibraryController::class,'detail'])->name('detail_book');
 
