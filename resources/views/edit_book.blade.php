@@ -31,12 +31,15 @@
             <label for="isbn" class="form-label">İsbn</label>
             <input name="isbn" type="text"  value="{{ $book->isbn }}" class="form-control" id="isbn">
         </div>
+
         <div class="mb-3">
             <label for="cover" class="form-label">Kitap Kapağı</label>
+            @if($book->cover)
             <img src="{{asset('uploads/'.$book->cover)}}" width="90">
-
+            @endif
             <input type="file" name="file" class="form-control" id="cover">
         </div>
+
 
 
         <button type="submit" class="btn btn-primary">Kitap Düzenle</button>
